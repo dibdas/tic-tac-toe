@@ -1,13 +1,29 @@
 #!/usr/bin/env ruby
 
 class TicTacToe
-  attr_reader :icon
+  attr_reader :name
   attr_accessor :player_input
 
-  def initialize(icon)
-    @icon = icon
+  def initialize(name)
+    @name = name
     @player_input = nil
     @board_array = [['| 1 |', ' 2 |', ' 3 |'], ['| 4 |', ' 5 |', ' 6 |'], ['| 7 |', ' 8 |', ' 9 |']]
+  end
+
+  def turn
+    puts "#{name} turn is this."
+  end
+
+  def validate_move(move)
+    puts "#{move} the move is invalid."
+  end
+
+  def winning_move
+    puts "#{name} won the game."
+  end
+
+  def draw_move
+    puts 'Nobody won the game. The game was draw.'
   end
 
   def display
@@ -27,17 +43,19 @@ class TicTacToe
   end
 end
 
-print 'Choose icon from (x or o) to start playing: (x/o)?: '
-playerchoice = gets.chomp
+print 'What is your name?'
+name = gets.chomp
 
-player_one = TicTacToe.new(playerchoice)
-puts player_one.icon
-player2 = player_one.icon == 'x' ? 'o' : 'x'
-puts player2
-player_two = TicTacToe.new(player2)
+player_one = TicTacToe.new(name)
+
+print 'What is your name?'
+name = gets.chomp
+
+player_two = TicTacToe.new(name)
+
+player_one.turn
 player_one.display
 player_one.choice
-puts "player one choice #{player_one.player_input}"
 
 player_two.display
 player_two.choice

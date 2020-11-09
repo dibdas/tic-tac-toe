@@ -1,35 +1,4 @@
 #!/usr/bin/env ruby
-# player_one = nil
-#
-#
-# puts ("player_one "+ player_one)
-# puts ("player_two "+ player_two)
-#
-# puts 'Choose your move from the board below:'
-#
-# puts '-' * 13
-# print '| 1 |'
-# print ' 2 |'
-# print ' 3 |'
-# puts ''
-# puts '+---+---+---+'
-#
-# print '| 4 |'
-# print ' 5 |'
-# print ' 6 |'
-# puts ''
-# puts '+---+---+---+'
-#
-# print '| 8 |'
-# print ' 7 |'
-# print ' 9 |'
-# puts ''
-# puts '-' * 13
-#
-# puts "chose any value from the board"
-# player1_input = gets.chomp
-# puts "chose any value from the board"
-# player2_input = gets.chomp
 
 class TicTacToe
   attr_reader :icon

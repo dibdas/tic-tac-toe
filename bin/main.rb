@@ -14,8 +14,8 @@ class TicTacToe
     puts "#{name} turn is this."
   end
 
-  def validate_move(move)
-    puts "#{move} the move is invalid."
+  def validate_move
+    puts "#{player_input} the move is invalid."
   end
 
   def winning_move
@@ -43,22 +43,33 @@ class TicTacToe
   end
 end
 
-print 'What is your name?'
-name = gets.chomp
+game_on = true
 
-player_one = TicTacToe.new(name)
+winner = true
+while game_on
+  game_on = false if winner
 
-print 'What is your name?'
-name = gets.chomp
+  print 'What is your name?'
+  name = gets.chomp
 
-player_two = TicTacToe.new(name)
+  player_one = TicTacToe.new(name)
 
-player_one.turn
-player_one.display
-player_one.choice
+  player_one.turn
+  player_one.choice
+  player_one.validate_move
+  player_one.display
+  player_one.winning_move
+  player_one.draw_move
 
-player_two.display
-player_two.choice
-puts "player two choice #{player_two.player_input}"
+  print 'What is your name?'
+  name = gets.chomp
 
-puts "player one #{player_one}.\nplayer two #{player_two}"
+  player_two = TicTacToe.new(name)
+
+  player_two.turn
+  player_two.choice
+  player_two.validate_move
+  player_two.display
+  player_two.winning_move
+  player_two.draw_move
+end

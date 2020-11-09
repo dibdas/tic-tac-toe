@@ -1,6 +1,8 @@
-puts 'hello world'
 
+# !/usr/bin/env ruby
 
-puts "“Now, your move is displayed on the board”"
+puts 'Hello world!'
+
+puts '“Now, your move is displayed on the board”'
 input = gets.chomp
 puts input

@@ -1,2 +1,2 @@
-# tic-tact-toe
+# tic-tac-toe
 building a game

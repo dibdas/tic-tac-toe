@@ -4,7 +4,7 @@ class Board
 
     board.each do |row|
       row.each do |column|
-        @cells[column] = 'x'
+        @cells[column] = column
       end
     end
   end

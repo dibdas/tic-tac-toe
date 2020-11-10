@@ -86,9 +86,22 @@ array = [
 game_on = true
 
 winner = true
+def get_name
+  puts "enter a valid name"
+  name = gets.chomp
+  return name unless name.empty?
+end
+def get_symbol
+  puts "enter the symbol (x or o)"
+  symbol = gets.chomp
+  return symbol
+end
 
-player_one = Player.new()
-player_two = Player.new()
+player_one = Player.new(get_name,get_symbol)
+puts "player one: #{player_one.name}: #{player_one.symbol}"
+symbol_for_two = player_one.symbol =='x'? 'o' : 'x'
+player_two = Player.new(get_name,symbol_for_two)
+puts "player one: #{player_two.name}: #{symbol_for_two}"
 
 while game_on
   game_on = false if winner

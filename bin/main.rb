@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
 
+
+
 class TicTacToe
-  attr_reader :name
+  attr_reader :name ,:player_symbol
   attr_accessor :player_input
 
-  def initialize(name)
+  def initialize(name,player_symbol)
     @name = name
     @player_input = nil
+    @player_symbol = player_symbol
+    @history_input = []
     @board_array = [['| 1 |', ' 2 |', ' 3 |'], ['| 4 |', ' 5 |', ' 6 |'], ['| 7 |', ' 8 |', ' 9 |']]
   end
 
@@ -15,7 +19,13 @@ class TicTacToe
   end
 
   def validate_move
+    if player_input.to_i>=1 && player_input.to_i<=9
+    puts "#{player_input} the move is valid."
+    history_input << player_input
+    else
     puts "#{player_input} the move is invalid."
+    self.choice
+    end
   end
 
   def winning_move
@@ -26,11 +36,16 @@ class TicTacToe
     puts 'Nobody won the game. The game was draw.'
   end
 
+
   def display
     puts '-' * 13
     @board_array.each do |value|
       value.each do |i|
-        print i
+          if  history_input.include?i
+            print player_symbol
+          else
+            print i
+        end
       end
       puts ''
       puts '+---+---+---+'
@@ -38,9 +53,10 @@ class TicTacToe
   end
 
   def choice
-    puts 'chose any value from the board'
+    puts 'chose any value from the board bretween 1 t0 9'
     self.player_input = gets.chomp
   end
+
 end
 
 game_on = true
@@ -51,9 +67,15 @@ while game_on
 
   print 'What is your name?'
   name = gets.chomp
+  puts "enter the symbol"
+  player1_symbol = gets.chomp
 
-  player_one = TicTacToe.new(name)
+  player2_symbol = player1_symbol == 'x' ? 'o' : 'x'
 
+  player_one = TicTacToe.new(name,player1_symbol)
+  player_one.name
+  puts "player1 symbol #{player1_symbol}"
+  puts "player2 symbol #{player2_symbol}"
   player_one.turn
   player_one.choice
   player_one.validate_move
@@ -64,7 +86,7 @@ while game_on
   print 'What is your name?'
   name = gets.chomp
 
-  player_two = TicTacToe.new(name)
+  player_two = TicTacToe.new(name,player2_symbol)
 
   player_two.turn
   player_two.choice

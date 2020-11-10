@@ -73,7 +73,6 @@
 
 # end
 
-require_relative '../lib/board'
 require_relative '../lib/player'
 require_relative '../lib/game_logic'
 
@@ -108,9 +107,7 @@ while game_on
 
   game = Game.new(player_one, player_two)
 
-  b = Board.new(array)
-
-  b.draw
+  game.start
 
   puts game
 end

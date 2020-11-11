@@ -24,11 +24,11 @@ class Game
 
   def start
     i = 1
-    @board.draw
+    yield @board.draw
     while i <= 9
-      choice
+      choice {|message| yield message}
       system('clear')
-      @board.draw
+      yield @board.draw
       return "#{current_user.name}, won the game!!" if winning_move?
 
       change_turn(@turn)
@@ -42,8 +42,8 @@ class Game
   end
 
   def choice
-    puts "current user: #{current_user.name} symbol is #{current_user.symbol}"
-    puts 'Enter a move from the board above:'
+    yield "current user: #{current_user.name} symbol is #{current_user.symbol}"
+    yield 'Enter a move from the board above:'
     move = gets.chomp.to_i
     updating_move(move)
   end

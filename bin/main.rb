@@ -22,6 +22,10 @@ player_one = Player.new(insert_name, insert_symbol)
 symbol_for_two = player_one.symbol == 'X' ? 'O' : 'X'
 player_two = Player.new(insert_name, symbol_for_two)
 
+
 game = Game.new(player_one, player_two)
 
-puts game.start
+
+game.start do |message|
+  puts message
+end

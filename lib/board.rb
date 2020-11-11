@@ -18,4 +18,9 @@ class Board
     puts "| #{@cells[7]} | #{@cells[8]} | #{@cells[9]} |"
     puts '-'*13
   end
+
+  def update(player,move)
+    @cells[move.to_i] = player.symbol
+
+  end
 end

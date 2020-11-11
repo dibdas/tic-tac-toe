@@ -103,11 +103,8 @@ player_two = Player.new(get_name,symbol_for_two)
 puts "player one: #{player_two.name}: #{symbol_for_two}"
 game = Game.new(player_one, player_two)
 
-while game_on
-  game_on = false if winner == 3
 
-  winner += 1
   game.start
 
   puts game
-end
+

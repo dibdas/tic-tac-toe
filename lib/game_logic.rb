@@ -22,34 +22,35 @@ class Game
     @board = Board.new(@array)
   end
 
-  def start
+  def start(&block)
     i = 1
     yield @board.draw
     while i <= 9
-      choice {|message| yield message}
+      choice(&block)
       system('clear')
       yield @board.draw
-      return "#{current_user.name}, won the game!!" if winning_move?
+      yield "#{current_user.name}, won the game!!" if winning_move?
+      return if winning_move?
 
       change_turn(@turn)
       i += 1
     end
-    draw_move
+    yield draw_move
   end
 
   def change_turn(turn)
     @turn = !turn
   end
 
-  def choice
+  def choice(&block)
     yield "current user: #{current_user.name} symbol is #{current_user.symbol}"
     yield 'Enter a move from the board above:'
     move = gets.chomp.to_i
-    updating_move(move)
+    updating_move(move, &block)
   end
 
-  def updating_move(move)
-    return choice unless valid_move?(move)
+  def updating_move(move, &block)
+    return choice(&block) unless valid_move?(move)
 
     current_user.moves << move
     print current_user.moves

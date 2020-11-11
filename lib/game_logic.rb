@@ -7,7 +7,7 @@ class Game
     @player_one = player_one
     @player_two = player_two
     @array = [[1,2,3],[4,5,6],[7,8,9]]
-    @turn = 0
+    @turn = true
 
     @winning_moves = [
       Set.new(@array[0]),
@@ -28,11 +28,11 @@ class Game
     @board.draw
     puts "current user: #{current_user.name} symbol is #{current_user.symbol}"
     choice
-  
+
   end
 
-  def turn
-    @turn=false
+  def change_turn(turn)
+    @turn = !turn
   end
 
   def choice
@@ -43,17 +43,10 @@ class Game
 
   def validate_move(move)
 
-    if move.match(/[0-9]/)
-      if valid_move?(move)
-        @current_user.moves
-        puts "its a valid move"
-      else
-        puts "its not a valid move"
-      end
-    else
-      choice
-    end
+    return choice unless valid_move?(move)
 
+    current_user.moves << move.to_i
+    change_turn(@turn)
   end
 
   def current_user
@@ -62,11 +55,11 @@ class Game
     else
       return @player_two
     end
-  
+
   end
 
   def valid_move?(move)
-    return true if (0..9).include?(move.to_i)
+    return true if (1..9).include?(move.to_i) && move.match(/[1-9]/)
     false
   end
 

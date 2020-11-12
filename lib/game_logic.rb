@@ -53,6 +53,7 @@ class Game
 
   def updating_move(move, &choice_proc)
     return choice(&choice_proc) unless valid_move?(move)
+
     current_user.moves << move
     update_board(move)
   end

@@ -48,10 +48,10 @@ class Game
     move = yield "current user: #{current_user.name} symbol is #{current_user.symbol}\n"\
     'Enter a valid move in between 1 to 9 available from the board above :'
 
-    updating_move(move,&choice_proc)
+    updating_move(move, &choice_proc)
   end
 
-  def updating_move(move,&choice_proc)
+  def updating_move(move, &choice_proc)
     return choice(&choice_proc) unless valid_move?(move)
     current_user.moves << move
     update_board(move)
@@ -70,7 +70,7 @@ class Game
   end
 
   def valid_move?(move)
-    return true if (1..9).include?(move) &&
+    return true if (1..9).cover?(move) &&
                    !@player_one.moves.include?(move) && !@player_two.moves.include?(move)
 
     false

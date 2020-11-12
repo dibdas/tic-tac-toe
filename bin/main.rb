@@ -26,4 +26,9 @@ player_two = Player.new(insert_name('player2'), symbol_for_two)
 
 game = Game.new(player_one, player_two)
 
-game.start { |message| puts message }
+choice_proc = proc do |message|
+  puts message
+  gets.chomp.to_i
+end
+
+game.start(choice_proc) { |message| puts message }

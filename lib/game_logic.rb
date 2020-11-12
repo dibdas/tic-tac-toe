@@ -22,15 +22,17 @@ class Game
     @board = Board.new(@array)
   end
 
-  def start(&block)
+  def start(choice_proc)
     i = 1
     yield @board.draw
     while i <= 9
-      choice(&block)
+      choice(&choice_proc)
       system('clear')
       yield @board.draw
-      yield "#{current_user.name}, won the game!!" if winning_move?
-      return if winning_move?
+      if winning_move?
+        yield "#{current_user.name}, won the game!!"
+        return
+      end
 
       change_turn(@turn)
       i += 1
@@ -42,18 +44,17 @@ class Game
     @turn = !turn
   end
 
-  def choice(&block)
-    yield "current user: #{current_user.name} symbol is #{current_user.symbol}"
-    yield 'Enter a move from the board above:'
-    move = gets.chomp.to_i
-    updating_move(move, &block)
+  def choice
+    move = yield "current user: #{current_user.name} symbol is #{current_user.symbol}\n"\
+    'Enter a move from the board above:'
+
+    updating_move(move)
   end
 
-  def updating_move(move, &block)
-    return choice(&block) unless valid_move?(move)
+  def updating_move(move)
+    return choice(&choice_proc) unless valid_move?(move)
 
     current_user.moves << move
-    print current_user.moves
     update_board(move)
   end
 

@@ -24,7 +24,15 @@ end
 require_relative '../lib/board.rb'
 
 describe Board do
-    let(:board)
+  let(:board) {Board.new([[1, 2, 3], [4, 5, 6], [7, 8, 9]])}
+  describe '#initialize' do
+    it 'should have empty board' do
+      expect(board.cells).to eql([1])
+    end
+    it '#update' do
+      expect(board.)
+    end
+  end
 end
 
 

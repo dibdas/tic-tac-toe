@@ -21,6 +21,11 @@ describe Player do
     end
 end
 
+require_relative '../lib/board.rb'
+
+describe Board do
+    let(:board)
+end
 
 
 

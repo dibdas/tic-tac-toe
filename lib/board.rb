@@ -1,4 +1,6 @@
 class Board
+  attr_reader :cells
+
   def initialize(board)
     @cells = {}
 

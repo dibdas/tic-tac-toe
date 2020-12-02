@@ -30,7 +30,14 @@ describe Board do
   end
   describe '#draw' do
     it 'should draw the board' do
-    expect(board.cells).to eql({1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6, 7=>7, 8=>8, 9=>9})
+      expect(board.cells).to eql({ 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9 })
+    end
+  end
+  describe '#update' do
+    it 'should update the board' do
+      player = Player.new('peter', 'X')
+      board.update(player, 3)
+      expect(board.cells[3]).to eql(player.symbol)
     end
   end
 end

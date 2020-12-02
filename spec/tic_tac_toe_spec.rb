@@ -1,6 +1,5 @@
 require_relative '../lib/board'
 require_relative '../lib/player'
-require_relative '../lib/game_logic'
 
 describe Player do
   let(:s1) { Player.new('angel', 'O') }

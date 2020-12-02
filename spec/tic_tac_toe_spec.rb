@@ -1,5 +1,6 @@
 require_relative '../lib/board'
 require_relative '../lib/player'
+require_relative '../lib/game_logic.rb'
 
 describe Player do
   let(:s1) { Player.new('angel', 'O') }
@@ -39,24 +40,24 @@ describe Board do
       expect(board.cells[3]).to eql(player.symbol)
     end
   end
+end
 
-  describe Game do
+
+describe Game do
     let(:player1) { Player.new('Dibyendu', 'X') }
     let(:player2) { Player.new('Angel', 'O') }
     let(:game) { Game.new(player1, player2) }
     let(:move) { [[1, 2, 3], [4, 5, 6], [7, 8, 9]] }
+    let(:turn) {true}
 
     describe 'change_turn' do
       it 'should change the turn' do
         expect(game.change_turn(false)).to eql(true)
       end
     end
-
-  #  describe '#choice' do
-  #    it 'should return from 1 to 9' do
-  #      s1 = Player.new('peter', 'X')
-  #      expect(s1.move).to eql(1)
-  #    end
-  #  end
-  end
+    describe '#curent_user' do
+      it 'user' do
+        expect(game.current_user).to eql(player1)
+      end
+    end
 end

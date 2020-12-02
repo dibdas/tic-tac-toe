@@ -48,17 +48,16 @@ describe Game do
   let(:game) { Game.new(player1, player2) }
   let(:move) { [[1, 2, 3], [4, 5, 6], [7, 8, 9]] }
   let(:turn) { true }
-  let(:winning_moves) {
-   {Set.new(@array[0])}=>
-   {Set.new(@array[1])}=>
-
-   {Set.new(@array[2])}=>
-   {Set.new([@array[0][0], @array[1][0], @array[2][0]])}
-   {Set.new([@array[0][1], @array[1][1], @array[2][1]])}
-   {Set.new([@array[0][2], @array[1][2], @array[2][2]])}
-  {Set.new([@array[0][0], @array[1][1], @array[2][2]])}
-  {Set.new([@array[0][2], @array[1][1], @array[2][0]])}
-  }
+  let(:winning_moves) do
+    [Set.new(@array[0]),
+     Set.new(@array[1]),
+     Set.new(@array[2]),
+     Set.new([@array[0][0], @array[1][0], @array[2][0]]),
+     Set.new([@array[0][1], @array[1][1], @array[2][1]]),
+     Set.new([@array[0][2], @array[1][2], @array[2][2]]),
+     Set.new([@array[0][0], @array[1][1], @array[2][2]]),
+     Set.new([@array[0][2], @array[1][1], @array[2][0]])]
+  end
 
   describe 'change_turn' do
     it 'should change the turn' do
@@ -79,8 +78,8 @@ describe Game do
   end
   describe '#winning_move' do
     it 'should return the whether the move is winind move or not' do
-      winning_moves.each do |win|
-      expect(player1.moves).to eql(win)
+      player1.moves = [1, 2, 3]
+      expect(game.winning_move?).to eql(true)
     end
   end
 end
